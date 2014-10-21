@@ -1,0 +1,40 @@
+kturtle-script-v1.0
+reset
+$s = 2000
+$mid = $s / 2
+canvassize $s,$s
+fontsize 100
+
+$n = 1
+while true {
+  clear
+  $r=0
+  repeat 11 {
+  $n = $n+2
+  $m = $n
+  $d = getdirection
+  direction 0
+  pencolor (random 0,255), (random 0,255), (random 0,255)
+  penwidth random 3,12
+  go $r*100,$r*2
+  if ($r==0) or ($r==5) or ($r==10) {
+    print $m
+  }
+  direction $d
+  go ($mid + random -100, 100), ($mid + random -100, 100)
+  while $m > 1 {
+    if (mod $m,2) == 0 {
+      $m = $m / 2
+      turnright mod $m,90
+    }
+    else {
+      $m = 3 * $m + 1
+      turnleft mod $m,90
+    }
+    forward 10
+  }
+  $r = $r+1
+}
+wait 1
+canvascolor (random 0,255), (random 0,255), (random 0,255)
+}
